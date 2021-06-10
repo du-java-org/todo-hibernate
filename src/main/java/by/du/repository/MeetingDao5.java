@@ -14,7 +14,13 @@ public class MeetingDao5 extends AbstractHibernateDao2<Meeting> {
     }
 
     @Override
-    protected void getWhereBetween(LocalDateTime from, LocalDateTime to, CriteriaBuilder cb, CriteriaQuery<Meeting> query, Root<Meeting> root) {
-        query.where(cb.between(root.get("time"), from, to));
+    protected void getWhereBetween(
+            LocalDateTime from,
+            LocalDateTime to,
+            CriteriaBuilder cb,
+            CriteriaQuery<Meeting> criteriaQuery,
+            Root<Meeting> root
+    ) {
+        criteriaQuery.where(cb.between(root.get("time"), from, to));
     }
 }

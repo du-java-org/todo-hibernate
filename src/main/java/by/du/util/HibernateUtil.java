@@ -8,7 +8,7 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.Properties;
 
-public class HibernateConfig {
+public class HibernateUtil {
 
     public static Session createSession() {
         final Configuration configuration = new Configuration();
@@ -21,7 +21,7 @@ public class HibernateConfig {
     @SneakyThrows
     private static Properties getProps() {
         final Properties properties = new Properties();
-        properties.load(HibernateConfig.class.getClassLoader().getResourceAsStream("hibernate.properties"));
+        properties.load(HibernateUtil.class.getClassLoader().getResourceAsStream("hibernate.properties"));
         return properties;
     }
 }

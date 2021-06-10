@@ -4,7 +4,7 @@ import by.du.model.Meeting;
 import by.du.repository.Dao;
 import by.du.repository.MeetingDao4;
 import by.du.service.MeetingService;
-import by.du.util.HibernateConfig;
+import by.du.util.HibernateUtil;
 import org.hibernate.Session;
 
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class AppMeeting2 {
     public static void main(String[] args) {
-        final Session session = HibernateConfig.createSession();
+        final Session session = HibernateUtil.createSession();
         final MeetingService meetingService = getMeetingService(session);
 
         final Meeting meeting1 = Meeting.builder()

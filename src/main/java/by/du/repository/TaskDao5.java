@@ -14,7 +14,13 @@ public class TaskDao5 extends AbstractHibernateDao2<Task> {
     }
 
     @Override
-    protected void getWhereBetween(LocalDateTime from, LocalDateTime to, CriteriaBuilder cb, CriteriaQuery<Task> query, Root<Task> root) {
-        query.where(cb.between(root.get("date"), from.toLocalDate(), to.toLocalDate()));
+    protected void getWhereBetween(
+            LocalDateTime from,
+            LocalDateTime to,
+            CriteriaBuilder cb,
+            CriteriaQuery<Task> criteriaQuery,
+            Root<Task> root
+    ) {
+        criteriaQuery.where(cb.between(root.get("date"), from.toLocalDate(), to.toLocalDate()));
     }
 }

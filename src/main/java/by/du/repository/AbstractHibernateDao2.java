@@ -37,8 +37,9 @@ public abstract class AbstractHibernateDao2<T extends Event> implements Dao<T> {
     public List<T> findAll() {
         final Transaction transaction = session.beginTransaction();
         try {
-            final String entity = "from " + type.getSimpleName();
-            final Query<T> query = session.createQuery(entity, type);
+            final CriteriaBuilder cb = session.getCriteriaBuilder();
+            final CriteriaQuery<T> criteriaQuery = cb.createQuery(type);
+            final Query<T> query = session.createQuery(criteriaQuery);
             final List<T> list = query.getResultList();
             transaction.commit();
             return list;
@@ -53,11 +54,11 @@ public abstract class AbstractHibernateDao2<T extends Event> implements Dao<T> {
         final Transaction transaction = session.beginTransaction();
         try {
             final CriteriaBuilder cb = session.getCriteriaBuilder();
-            final CriteriaQuery<T> query = cb.createQuery(type);
-            final Root<T> root = query.from(type);
-            getWhereBetween(from, to, cb, query, root);
-            final Query<T> criteriaQuery = session.createQuery(query);
-            final List<T> list = criteriaQuery.getResultList();
+            final CriteriaQuery<T> criteriaQuery = cb.createQuery(type);
+            final Root<T> root = criteriaQuery.from(type);
+            getWhereBetween(from, to, cb, criteriaQuery, root);
+            final Query<T> query = session.createQuery(criteriaQuery);
+            final List<T> list = query.getResultList();
             transaction.commit();
             return list;
         } catch (Exception ex) {
