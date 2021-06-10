@@ -39,6 +39,7 @@ public abstract class AbstractHibernateDao2<T extends Event> implements Dao<T> {
         try {
             final CriteriaBuilder cb = session.getCriteriaBuilder();
             final CriteriaQuery<T> criteriaQuery = cb.createQuery(type);
+            criteriaQuery.from(type);
             final Query<T> query = session.createQuery(criteriaQuery);
             final List<T> list = query.getResultList();
             transaction.commit();
