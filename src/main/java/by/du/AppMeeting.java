@@ -8,9 +8,8 @@ import by.du.util.HibernateConfig;
 import org.hibernate.Session;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-public class App3 {
+public class AppMeeting {
     public static void main(String[] args) {
         final Session session = HibernateConfig.createSession();
         final MeetingService meetingService = getMeetingService(session);

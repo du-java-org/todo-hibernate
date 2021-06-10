@@ -1,6 +1,7 @@
 package by.du.util;
 
 import by.du.model.Meeting;
+import by.du.model.Task;
 import lombok.SneakyThrows;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
@@ -13,6 +14,7 @@ public class HibernateConfig {
         final Configuration configuration = new Configuration();
         configuration.addProperties(getProps());
         configuration.addAnnotatedClass(Meeting.class);
+        configuration.addAnnotatedClass(Task.class);
         return configuration.buildSessionFactory().openSession();
     }
 
