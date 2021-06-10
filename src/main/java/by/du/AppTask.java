@@ -1,5 +1,6 @@
 package by.du;
 
+import by.du.model.Status;
 import by.du.model.Task;
 import by.du.repository.Dao;
 import by.du.repository.TaskDao5;
@@ -19,12 +20,13 @@ public class AppTask {
         final Task task1 = Task.builder()
                 .date(LocalDate.now())
                 .desc("desc1")
+                .status(Status.NEW)
                 .build();
 
         final Task task = taskService.create(task1);
         final Task byId = taskService.findById(1);
         final List<Task> all = taskService.findAll();
-        task.setIsDone(true);
+        task.setStatus(Status.DONE);
         taskService.update(task);
         taskService.findAllBetween(LocalDateTime.now().minusDays(1), LocalDateTime.now().plusDays(1));
         taskService.delete(task);

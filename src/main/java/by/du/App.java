@@ -2,6 +2,7 @@ package by.du;
 
 import by.du.exception.NotFoundException;
 import by.du.model.Meeting;
+import by.du.model.Status;
 import by.du.model.Task;
 import by.du.repository.Dao;
 import by.du.service.MeetingService;
@@ -59,14 +60,15 @@ public class App {
         final Task task1 = Task.builder()
                 .date(LocalDate.now())
                 .desc("desc1")
+                .status(Status.NEW)
                 .build();
 
         final Task task = taskService.create(task1);
         final List<Task> all = taskService.findAll();
-        task.setIsDone(true);
+        task.setStatus(Status.READY);
         taskService.update(task);
         taskService.findAllBetween(LocalDateTime.now().minusDays(1), LocalDateTime.now().plusDays(1));
-        taskService.delete(task);
+//        taskService.delete(task);
         try {
             taskService.findById(1);
         } catch (NotFoundException ex) {

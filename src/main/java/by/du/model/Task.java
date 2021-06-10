@@ -21,8 +21,9 @@ public class Task implements Event {
     private Integer id;
     @Column(name = "task_desc")
     private String desc;
-    @Column(name = "task_is_done")
-    private Boolean isDone;
+    @Column(name = "task_status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
     @Column(name = "task_date")
     private LocalDate date;
 }
